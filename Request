@@ -1,0 +1,7 @@
+En la carrera ciclistica de uniespinal los participantes debe cumplir con la siguientes datos de inscripcion: 
+Cedula, Nombre, Direccion, Telefono, Telefono de emergencia. Las categorias son: Velocidad, panaderas y recreativas.
+Este evento sera llamda uniespinal2026 ciclistico. Donde se inicia a las 8:00 Am y termina  a las 4:00 pm. 
+La carrera tendra un recorrido de 10kms y 5 kms. Los participantes pueden inscribirse a varas categorias.
+
+Al final de la carrera se debe guardar los tiempo de cada competidor, y sus puestos en cada de sus modalidades. 
+Se debe determinar, horas de salida segun la edad de los participantes, ser el orden de salida, marcada por colores.
