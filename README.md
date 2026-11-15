@@ -222,18 +222,6 @@ Luego entra a [http://localhost:8000](http://localhost:8000).
 - La inscripción del participante, su contacto y sus modalidades se guardan en una sola transacción: si algo falla, no queda nada a medias.
 - Todas las consultas a la base de datos usan parámetros preparados, y los textos que se muestran en pantalla se escapan con `htmlspecialchars`.
 
----
-
-## Limitaciones conocidas
-
-Probé el sistema con PHP 8.3 y MariaDB 10.11: el script SQL importa sin errores, todas las pantallas cargan y la asignación de grupos y el cálculo de tiempos funcionan. Estos son los puntos que quedan por mejorar:
-
-- **Los mensajes de confirmación no siempre aparecen.** Al inscribir, editar, cargar resultados o administrar grupos, el aviso verde de "guardado" no se ve después de volver a la página, aunque la operación sí queda registrada. Pasa porque esas páginas guardan el mensaje antes de iniciar la sesión de PHP, que solo se abre en `header.php`. Se arregla agregando `session_start();` justo después de `require_once 'db.php';` en esos archivos.
-- **El puesto se escribe a mano.** El tiempo se calcula solo, pero el puesto en la modalidad lo digita la persona que registra las llegadas.
-- **El puesto general no se calcula.** La columna `puesto_general` existe en la base de datos, pero ninguna pantalla la llena todavía.
-- **Un solo evento.** Varias consultas asumen que el evento es el número 1, y la fecha del menú superior está escrita directamente en `header.php`.
-- **Sin inicio de sesión.** Cualquiera que abra la dirección puede modificar datos. Para usarlo fuera de un computador local habría que agregar usuarios y contraseña.
-- **Credenciales por defecto.** `db.php` usa el usuario `root` sin contraseña, que solo es aceptable en un entorno local de pruebas.
 
 ---
 
