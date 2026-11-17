@@ -7,7 +7,7 @@ DROP DATABASE IF EXISTS uniespinal_ciclismo;
 CREATE DATABASE uniespinal_ciclismo CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE uniespinal_ciclismo;
 
---Tabla1: eventos
+-- Tabla1: eventos
 CREATE TABLE eventos (
     id_evento INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -18,14 +18,14 @@ CREATE TABLE eventos (
     lugar VARCHAR(150) NOT NULL DEFAULT 'El Espinal, Tolima'
 ) ENGINE=InnoDB;
 
---Tabla2: categorias
+-- Tabla2: categorias
 CREATE TABLE categorias (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL UNIQUE,
     descripcion VARCHAR(255)
 ) ENGINE=InnoDB;
 
---Tabla3: recorridos
+-- Tabla3: recorridos
 CREATE TABLE recorridos (
     id_recorrido INT AUTO_INCREMENT PRIMARY KEY,
     distancia_km DECIMAL(5,2) NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE recorridos (
     descripcion VARCHAR(255)
 ) ENGINE=InnoDB;
 
---Tabla4: modalidades
+-- Tabla4: modalidades
 CREATE TABLE modalidades (
     id_modalidad INT AUTO_INCREMENT PRIMARY KEY,
     id_evento INT NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE modalidades (
     UNIQUE KEY uk_evento_cat_rec (id_evento, id_categoria, id_recorrido)
 ) ENGINE=InnoDB;
 
---Tabla5: grupos_salida
+-- Tabla5: grupos_salida
 -- Permite definir libremente el color, modalidad, rango de edad y hora de salida.
 -- El color no queda atado a la edad: cada grupo define su color y horario.
 CREATE TABLE grupos_salida (
@@ -62,7 +62,7 @@ CREATE TABLE grupos_salida (
     CONSTRAINT chk_edades CHECK (edad_minima <= edad_maxima)
 ) ENGINE=InnoDB;
 
---Tabla6: participantes
+-- Tabla6: participantes
 CREATE TABLE participantes (
     id_participante INT AUTO_INCREMENT PRIMARY KEY,
     cedula VARCHAR(20) NOT NULL UNIQUE,
@@ -74,7 +74,7 @@ CREATE TABLE participantes (
     fecha_nacimiento DATE NOT NULL
 ) ENGINE=InnoDB;
 
---Tabla7: contactos
+-- Tabla7: contactos
 CREATE TABLE contactos (
     id_contacto INT AUTO_INCREMENT PRIMARY KEY,
     id_participante INT NOT NULL,
@@ -84,13 +84,13 @@ CREATE TABLE contactos (
     FOREIGN KEY (id_participante) REFERENCES participantes(id_participante) ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
---Tabla8: estados
+-- Tabla8: estados
 CREATE TABLE estados (
     id_estado INT AUTO_INCREMENT PRIMARY KEY,
     desc_estado VARCHAR(50) NOT NULL UNIQUE
 ) ENGINE=InnoDB;
 
---Tabla9: inscripciones
+-- Tabla9: inscripciones
 CREATE TABLE inscripciones (
     id_inscripcion INT AUTO_INCREMENT PRIMARY KEY,
     id_participante INT NOT NULL,
@@ -105,7 +105,7 @@ CREATE TABLE inscripciones (
     UNIQUE KEY uk_participante_modalidad (id_participante, id_modalidad)
 ) ENGINE=InnoDB;
 
---Tabla10: resultados
+-- Tabla10: resultados
 CREATE TABLE resultados (
     id_resultado INT AUTO_INCREMENT PRIMARY KEY,
     id_inscripcion INT NOT NULL UNIQUE,
